@@ -41,4 +41,16 @@ class DBHelper {
     print('Usuario registrado con ID: $insertedRowId'); // Imprime el mensaje en la consola
     return insertedRowId;
   }
+
+
+  Future<bool> checkLogin(String email, String password) async {
+    Database? dbClient = await db;
+    List<Map<String, dynamic>> result = await dbClient!.query(
+      'users',
+      where: 'email = ? AND password = ?',
+      whereArgs: [email, password],
+    );
+
+    return result.isNotEmpty; // Retorna true si se encuentra un usuario con esas credenciales, de lo contrario, retorna false
+  }
 }
