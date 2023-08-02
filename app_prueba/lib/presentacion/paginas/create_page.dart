@@ -159,16 +159,10 @@ class MyFormFields extends StatelessWidget {
       {bool isPassword = false}) {
     return Container(
       width: 300,
+      height: 60,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        gradient: const LinearGradient(
-          colors: [
-            Color(0xFFF79935), // Color del botón (lado derecho del degradado)
-            Color(0xFFF84A18), // Color del botón (lado izquierdo del degradado)
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ),
+        
       ),
       child: TextField(
         controller: controller,
@@ -179,11 +173,22 @@ class MyFormFields extends StatelessWidget {
           labelStyle: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: Color(0xFF44546F),
           ),
           hintText: hintText,
-          hintStyle: const TextStyle(color: Color(0xFFA29B96)),
-          border: InputBorder.none,
+          hintStyle: const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10), // Añadir el border-radius aquí
+            borderSide: const BorderSide(color: Color(0xFF44546F), width: 1.0),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10), // Añadir el border-radius aquí
+            borderSide: const BorderSide(color: Color(0xFF44546F), width: 1.0),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10), // Añadir el border-radius aquí
+            borderSide: const BorderSide(color: Color(0xFF44546F), width: 1.0),
+          ),
           contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         ),
       ),
@@ -292,18 +297,48 @@ class CreateAccountButton extends StatelessWidget {
             );
           }
         },
-        child: const Text(
-          'Crear',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
+        style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          padding: EdgeInsets.zero,
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          elevation: 0,
+          primary: Colors.transparent, // Hacemos el fondo transparente
+        ),
+        child: Ink(
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              colors: [
+                Color(0xFFF79935),
+                Color(0xFFF84A18),
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Container(
+            constraints: const BoxConstraints(
+              minWidth: 88.0,
+              minHeight: 36.0,
+            ),
+            alignment: Alignment.center,
+            child: const Text(
+              'Crear',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              )
+            )
           ),
         ),
       ),
     );
   }
 }
+
 
 class GifView extends StatelessWidget {
   const GifView({Key? key}) : super(key: key);
